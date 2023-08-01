@@ -1,0 +1,11 @@
+name: KillRewards
+version: '${project.version}'
+author: TenFont
+main: me.thetenfont.killrewards.KillRewards
+api-version: '1.18'
+description: A simple and easy-to-use plugin that rewards players for their kills.
+
+commands:
+  killrewards:
+    permission: killrewards.command
+    description: The main command for the KillRewards plugin.

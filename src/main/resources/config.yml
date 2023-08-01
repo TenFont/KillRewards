@@ -1,0 +1,33 @@
+
+# Conditions have to be of the following formats:
+
+# The reward is given when the player reaches a certain milestone.
+# - (kills/killstreak) = number
+
+# The player is rewarded for every n regular or consecutive kills.
+# - (kills/killstreak) % number
+
+# The player is rewarded when their kill count is a power of another number.
+# - (kills/killstreak) ^ number
+# EXAMPLE: kills ^ 10 -> The player is rewarded for 10th kill, 100th kill, 1000th kill, etc.
+
+# For relational operators, you may use > and <.
+# Example: kills > 9 -> The player is rewarded for every kill AFTER reaching 9 kills (exclusive)
+
+kill_rewards:
+
+  # The following kill reward will give a player 5 diamonds for every 5 consecutive kills after reaching 20 kills.
+  - conditions:
+      - killstreak % 5
+      - kills > 20
+    command: give %player% diamond 5
+
+  # The following kill reward will give a player a gold ingot when they reach 100 total kills.
+  - conditions:
+      - kills = 100
+    command: give %player% gold_ingot
+
+  # The following node does NOT reward the player, instead it is used to announce the player's killstreak.
+  - conditions:
+      - killstreak % 10
+    command: say %player% has reached a killstreak of %killstreak%!
