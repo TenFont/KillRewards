@@ -13,7 +13,7 @@ public class EvtPlayerKill implements Listener {
     final KillRewards killRewards;
 
     @EventHandler
-    public void OnPlayerDeath(PlayerDeathEvent event) {
+    public void onPlayerDeath(PlayerDeathEvent event) {
         KillsManager killsManager = killRewards.getKillsManager();
 
         Player player = event.getPlayer();
