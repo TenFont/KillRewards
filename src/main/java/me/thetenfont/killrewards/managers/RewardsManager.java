@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
 public class RewardsManager {
+    private static final Pattern CONDITION_PATTERN = Pattern.compile("(\\w+) *([=%<>]) *(\\w+)");
     private final KillRewards killRewards;
-    Pattern rewardPattern = Pattern.compile("(\\w+) *([=%<>]) *(\\w+)");
 
     public void checkRewards(Player player, int kills, int killstreak) {
         rewards : for (Map<?, ?> map : killRewards.getConfig().getMapList("kill_rewards")) {
@@ -29,7 +29,7 @@ public class RewardsManager {
     }
 
     private boolean doesConditionMatch(String condition, int kills, int killstreak) {
-        Matcher matcher = rewardPattern.matcher(condition);
+        Matcher matcher = CONDITION_PATTERN.matcher(condition);
         if (!matcher.find()) return false;
         String expressionString = matcher.group(1);
         if (!expressionString.equals("kills") && !expressionString.equals("killstreak")) return false;
